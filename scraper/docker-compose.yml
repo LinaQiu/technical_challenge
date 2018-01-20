@@ -1,0 +1,40 @@
+version: '3.3'
+services:
+  chrome:
+    image: selenium/node-chrome:latest
+    # networks:
+    #   - scrapernet
+    tty: true
+    stdin_open: true
+    depends_on:
+      - seleniumhub
+    volumes:
+      - /dev/shm:/dev/shm # Mitigates the Chromium issue described at https://code.google.com/p/chromium/issues/detail?id=519952
+    environment:
+      HUB_HOST: seleniumhub
+  seleniumhub:
+    image: selenium/hub:latest
+    # networks:
+    #   - scrapernet
+    tty: true
+    stdin_open: true
+    ports:
+      - "4444:4444"
+  scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile_python
+    container_name: scraper
+    # networks:
+    #   - scrapernet
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/scripts
+    depends_on:
+      - chrome
+
+# networks:
+#   scrapernet:
+#     driver: bridge
+#     attachable: true

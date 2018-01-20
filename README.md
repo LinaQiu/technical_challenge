@@ -1,3 +1,5 @@
+# [Answers to Analysis Q1 & Q2](https://github.com/LinaQiu/technical_challenge/tree/master/analysis_q1_q2)
+
 # Installation
 
 To run the scripts, your computer needs:
@@ -5,6 +7,7 @@ To run the scripts, your computer needs:
 - [Python 3](https://python.org)
 - [Pip Package Manager](https://pypi.python.org/pypi)
 - [Docker](https://www.docker.com/)
+- [Docker Compose 3.x](https://docs.docker.com/compose/compose-file/)
 
 # Scraper
 
@@ -32,7 +35,10 @@ python microsoft_scraper.py
 - Crawling results are stored in JSON format. 
 	- Results from Google contains the following things: `title, company, location, description-section, description-section text, description-section text with-benefits.`
 	- Results from Microsoft contains the following things: `Focus area, Education level, Job type, company, Location, description.`
-- Now, we will run a script to convert the above raw results to a text file with the same format as our database table (`jobs` in db `challenge`). 
+- Now, run a script (`reformat_json.py`) to convert the above raw results to a text file with the same format as the database table (`jobs` in db `challenge`). 
+	- For Google: combined all `description-section*` text as a single item, `description`. 
+	- For Microsoft: combined `Focus area, Education level, Job type` together, as job `title`. 
+		- Note: The pop up window of job details from Microsoft mixed several jobs together, and does not differntiate each sub job in their source. Hence, I was not able to fetch the titles for each sub job, and therefore decided to combine the three items together as the title.
 - Name the text file as `all_jobs.txt`, copy to the folder called `data` under `dashboard`, for the later use of loading to the database table. 
 
 - Navigate to folder `dashboard`:
@@ -91,5 +97,5 @@ python app.py
 
 - Note: 
 	- Similar jobs are defined as any jobs from the same company, and at the same location. 
-	- The app is not fully tested yet, due to technical difficulty regarding accessing the database from outside the mysql container. 
+	- The app is not fully tested yet, due to technical difficulties regarding accessing the database from outside the mysql container, and connecting to the mysql server at local machine right the installation. 
 

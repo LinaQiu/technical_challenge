@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Dashboard <small> Welcome {{session.username}}</small></h1>
+  <a class="btn btn-success" href="/view_details"> View </a>
+  <hr>
+  <table class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Company</th>
+      <th>Location</th>
+      <th></th>
+    </tr>
+    {% for job in jobs %}
+      <tr>
+        <td>{{job.id}}</td>
+        <td>{{job.title}}</td>
+        <td>{{job.company}}</td>
+        <td>{{job.location}}</td>
+        <td><a href="view_detail/{{job.id}}" class="btn btn-default pull-right">View</a></td>
+       <!--  <td>
+          <form action="{{url_for('delete_article', id=article.id)}}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete" class="btn btn-danger">
+          </form>
+        </td> -->
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

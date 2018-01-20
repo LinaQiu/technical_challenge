@@ -1,0 +1,19 @@
+# Use a default python:3.5 docker image as a parent image
+FROM ubuntu:latest
+
+MAINTAINER Lina Qiu <lqiu@ece.ubc.ca>
+
+RUN apt-get update -y
+RUN apt-get install -y python-pip python-dev build-essential
+RUN apt-get install libmysqlclient-dev -y
+
+# Copy the current directory contents into the container 
+ADD . /scripts/
+
+# Set the working directory to ../scripts
+WORKDIR /scripts/
+
+# Install any needed packages specified in requirements.txt
+RUN pip install -r requirements.txt
+
+ENTRYPOINT ["/bin/bash"]

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>{{job.title}}</h1>
+  <small>{{job.company}}, {{job.location}}</small>
+  <hr>
+  <div>
+    {{job.description}}
+  </div>
+  <div>
+  	<h1>Jobs</h1>
+  	<ul class="list-group">
+    	{% for similar_job in similar_jobs %}
+      	<li class="list-group-item">{{similar_job.title+', '+similar_job.company+', '+similar_job.	location}}</l>
+    	{% endfor %}
+  	</ul>
+  </div>
+{% endblock %}

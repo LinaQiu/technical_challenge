@@ -1,0 +1,50 @@
+version: '3.3'
+services:
+  mysql_db:
+    image: mysql:latest
+    tty: true
+    stdin_open: true
+    restart: always
+    container_name: db
+    hostname: sqlhost
+    ports:
+      - "3306:3306"
+    networks:
+      - dashboardnet
+    environment:
+      MYSQL_ROOT_PASSWORD: "rallyteam"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_HOST:  "%"
+    volumes:
+      - ./data:/var/lib/mysql-files
+      - ./mysql-config:/etc/mysql/mysql.conf.d
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+  flask_web:
+    build:
+      context: .
+      dockerfile: Dockerfile_flask
+    tty: true
+    stdin_open: true
+    restart: always
+    container_name: web
+    hostname: webhost
+    networks:
+      - dashboardnet
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/scripts
+    depends_on:
+      - mysql_db
+
+networks:
+  dashboardnet:
+    driver: bridge
+    attachable: true
+

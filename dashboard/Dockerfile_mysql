@@ -1,0 +1,9 @@
+# Parent image
+From mysql:latest
+
+MAINTAINER Lina Qiu <lqiu@ece.ubc.ca>
+
+# Setup the custom configuration
+ADD ./mysql-config/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+
+ENTRYPOINT ["/bin/bash"]

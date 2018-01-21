@@ -96,9 +96,11 @@ python app.py
 - Open the link `http://0.0.0.0:5000` at your local machine. 
 
 ### Limitations: 
-	- Similar jobs are defined as any jobs from the same company, and at the same location. 
-		- Ideally, to find similar jobs among two companies, we should do cluster analysis. For example, we could take job description text for all jobs, and apply k-means, to cluster all jobs to several category (text document clustering). Afterwards, we could have another data column in the db, to record the job category. However, due to time limitation, I did not get to finish this part.  
-	- The app is not fully tested yet, due to technical difficulties regarding accessing the database from outside the mysql container, and connecting to the mysql server at local machine right the installation.
-		- Even though both my web app container mysql container are under the same default network, the web app container still can't access the database from mysql container. This is probably related to the sensitive permission settings for database server. While many people had the same issue, and I read all their questions and potential solutions other people provided, I was still not able to figure out how to config the containers/database, to make it accessible. 
-	- Another thing need to improve is to make the main dashbord (presenting the job list) pagination, to adapt to the long list of jobs we have. 
+- Similar jobs are defined as any jobs from the same company, and at the same location. 
+  - Ideally, to find similar jobs among two companies, we should do cluster analysis. For example, we could take job description text for all jobs, and apply k-means, to cluster all jobs to several category (text document clustering). 
+  - Afterwards, we could have another data column in the db, to record the job category. However, due to time limitation, I did not get to finish this part.  
+- The app is not fully tested yet, due to technical difficulties regarding accessing the database from outside the mysql container, and connecting to the mysql server at local machine right the installation.
+  - Even though both my web app container mysql container are under the same default network, the web app container still can't access the database from mysql container. This is probably related to the sensitive permission settings for database server. 
+  - While many people had the same issue, and I read all their questions and potential solutions other people provided, I was still not able to figure out how to config the containers/database, to make it accessible. 
+- Another thing need to improve is to make the main dashbord (presenting the job list) pagination, to adapt to the long list of jobs we have. 
 

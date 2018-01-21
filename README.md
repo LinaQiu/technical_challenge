@@ -79,7 +79,9 @@ LOAD DATA LOCAL INFILE '/var/lib/mysql/all_jobs.txt' INTO TABLE jobs;
 
 # Job dashboard
 
-Simple application to present jobs scraped from Google and Microsoft
+Simple application to present jobs scraped from Google and Microsoft.
+  - [master branch](https://github.com/LinaQiu/technical_challenge): job dashboard tested with faked data, with code interacting with mysql database commented out. 
+  - [mysqlversion branch](https://github.com/LinaQiu/technical_challenge/tree/mysqlversion): job dashboard tested with actual job data stored in mysql, while not working yet, due to database access issue, with code for faked data testing commented out. 
 
 ```bash
 ### Start the web container interactively, running python3, with flask.

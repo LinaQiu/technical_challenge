@@ -2,16 +2,19 @@
 
 {% block body %}
   <h1>{{job.title}}</h1>
-  <small>{{job.company}}, {{job.location}}</small>
+  <large>{{job.company}}, {{job.location}}</large>
   <hr>
-  <div>
-    {{job.description}}
+  <div class="jumbotron">
+    <h4>Job Description</h4>
+    <p class="lead">{{job.description}}</p>
   </div>
-  <div>
-  	<h1>Jobs</h1>
+  <div class="container">
+  	<h2>Similar jobs</h2>
   	<ul class="list-group">
     	{% for similar_job in similar_jobs %}
-      	<li class="list-group-item">{{similar_job.title+', '+similar_job.company+', '+similar_job.	location}}</l>
+        <li class="list-group-item">
+          <base href="/jobs">
+          <a href="job/{{job.id}}">{{similar_job.title+', '+similar_job.company+', '+similar_job. location}}</a></li>
     	{% endfor %}
   	</ul>
   </div>

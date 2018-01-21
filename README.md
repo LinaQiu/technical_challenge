@@ -64,7 +64,7 @@ CREATE TABLE jobs (id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 DESCRIBE jobs;
 
 ### Load the all_jobs.txt to the table
-LOAD DATA LOCAL INFILE '/var/lib/mysql-files/all_jobs.txt' INTO TABLE jobs;
+LOAD DATA LOCAL INFILE '/var/lib/mysql/all_jobs.txt' INTO TABLE jobs;
 ```
 
 - MySQL table format:

@@ -16,7 +16,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_ROOT_HOST:  "%"
     volumes:
-      - ./data:/var/lib/mysql-files
+      - ./data:/var/lib/mysql
       - ./mysql-config:/etc/mysql/mysql.conf.d
 
   adminer:
